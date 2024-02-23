@@ -1,11 +1,12 @@
 import {
   BackgroundModule,
-  BackgroundModule2,
-  BackgroundModule3,
+  //   BackgroundModule2,
+  //   BackgroundModule3,
 } from './background.module';
 
 import { ShapeModule } from './shape.module';
 import { ClicksModule } from './clicks.module';
+import { Timer } from './timer.module';
 
 /*
 здесь добавить импорты экземпляров классов Таймер отсчета, Случайный звук, Кастомное сообщение
@@ -15,9 +16,9 @@ export const clicksModule = new ClicksModule('click', 'Аналитика кли
 
 export const shapeModule = new ShapeModule('shape', 'Случайная фигура');
 
-/*
- здесь вставить export для экземпляра класса Таймер отсчета
-*/
+/**/
+export const timer = new Timer('timer', 'Таймер отсчета');
+/**/
 
 /*
  здесь вставить export для экземпляра класса Случайный звук
