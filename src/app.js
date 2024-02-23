@@ -6,4 +6,3 @@ const menu = new ContextMenu();
 
 menu.open();
 menu.close();
-menu.add();
