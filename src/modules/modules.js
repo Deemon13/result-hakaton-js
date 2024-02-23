@@ -23,15 +23,19 @@ export const shapeModule = new ShapeModule('shape', 'Случайная фигу
  здесь вставить export для экземпляра класса Случайный звук
 */
 
-export const backgroundModule = new BackgroundModule('back', 'Случайный фон');
-export const backgroundModule2 = new BackgroundModule2(
-  'back2',
-  'Случайный фон2'
+export const backgroundModule = new BackgroundModule(
+  'back',
+  'Случайный фон',
+  'body'
 );
-export const backgroundModule3 = new BackgroundModule3(
-  'back3',
-  'Случайный фон3'
-);
+// export const backgroundModule2 = new BackgroundModule2(
+//   'back2',
+//   'Случайный фон2'
+// );
+// export const backgroundModule3 = new BackgroundModule3(
+//   'back3',
+//   'Случайный фон3'
+// );
 
 /*
  здесь вставить export для экземпляра класса Кастомное сообщение
