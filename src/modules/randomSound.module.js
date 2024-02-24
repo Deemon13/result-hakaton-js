@@ -20,7 +20,6 @@ export class RandomSound extends Module {
   }
 
   trigger() {
-    console.log('If you see me, I am working.');
     const soundId = Math.floor(Math.random() * soundsArr.length);
     const randomSound = soundsArr[soundId];
     randomSound.play();
