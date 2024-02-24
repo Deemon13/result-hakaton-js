@@ -7,6 +7,9 @@ import {
 import { ShapeModule } from './shape.module';
 import { ClicksModule } from './clicks.module';
 import { Timer } from './timer.module';
+//imported Message and Randsom Sound
+import { RandomSound } from './randomSound.module';
+import { Message } from './message.module';
 
 /*
 здесь добавить импорты экземпляров классов Таймер отсчета, Случайный звук, Кастомное сообщение
@@ -42,3 +45,4 @@ export const backgroundModule = new BackgroundModule(
 /*
  здесь вставить export для экземпляра класса Кастомное сообщение
 */
+export const message = new Message ('сообщение', 'Кастомное сообщение');
