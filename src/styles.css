@@ -1,42 +1,109 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    width: 100%;
-    padding: 2rem;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
 }
 
 .menu {
-    position: fixed;
-    z-index: 1000;
-    width: 150px;
-    background: #1b1a1a;
-    border-radius: 5px;
-    display: none;
-    list-style: none;
+  position: fixed;
+  z-index: 1000;
+  width: 150px;
+  background: #1b1a1a;
+  border-radius: 5px;
+  display: none;
+  list-style: none;
 }
 
 .menu.open {
-    display: block;
+  display: block;
 }
 
 .menu .menu-item {
-    padding: 8px 10px;
-    font-size: 1rem;
-    color: #eee;
-    cursor: pointer;
-    transition: background-color .2s ease-in;
-    border-radius: inherit;
+  padding: 8px 10px;
+  font-size: 1rem;
+  color: #eee;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  border-radius: inherit;
 }
 
 .menu .menu-item:hover {
-    background: #343434;
+  background: #343434;
+}
+
+/* timer */
+
+.create-timer {
+  max-width: 280px;
+  margin: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #00ff00;
+  border-radius: 20px;
+
+  color: #00ff00;
+  background-color: #343434;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 14px;
+}
+
+.form__label {
+  margin-bottom: 4px;
+}
+
+.form__input {
+  /* display: block; */
+  width: 250px;
+  padding: 5px;
+
+  border: none;
+  border-bottom: 1px solid #00ff00;
+  outline: none;
+
+  color: #007000;
+  background-color: transparent;
+}
+
+.form__input:focus {
+  color: #00ff00;
+}
+
+.btn {
+  display: block;
+  padding: 5px;
+
+  border: none;
+  border-radius: 5px;
+
+  font-size: 16pz;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  color: #007000;
+}
+
+.btn:hover {
+  cursor: pointer;
+
+  color: #00ff00;
+  background-color: #707070;
 }
