@@ -14,7 +14,7 @@ export class ShapeModule extends Module {
         this.#shapeHTML.className = 'shape';
     }
 
-    getRandomPosition(shape, size) {
+    getRandomPosition(shape) {
         let randomY = Math.floor(random(0, 1400));
         let randomX = Math.floor(random(0, 800));
         shape.style.transform = `translate(${randomY}px, ${randomX}px)`;
@@ -31,7 +31,7 @@ export class ShapeModule extends Module {
             this.getRandomPosition(this.#shapeHTML);
             this.#body.append(this.#shapeHTML);
         } else if(randomNumber === 2) {
-            const sizeCircle =  `${random(100, 200)}px`;
+            const sizeCircle = `${random(100, 200)}px`;
             this.#shapeHTML.style.width = sizeCircle;
             this.#shapeHTML.style.height = sizeCircle;
             this.#shapeHTML.style.backgroundColor = getRandomColor(this.#numbers);
