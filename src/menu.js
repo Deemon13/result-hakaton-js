@@ -14,6 +14,7 @@ export class ContextMenu extends Menu {
 
   open() {
     this.#body.addEventListener('contextmenu', event => {
+      this.#reset();
       // отменяем действие по умолчанию - вызов встроенного контекстного меню
       event.preventDefault();
       // если модулей нет, меню не вызывается
@@ -52,6 +53,7 @@ export class ContextMenu extends Menu {
         this.#menu.classList.remove('open');
         this.#menu.removeAttribute('style');
         if (event.target.innerText !== 'Добавить модуль') {
+          this.#reset();
           const typeID = event.target.dataset.type;
 
           this.modulesList.forEach(item => {
@@ -81,5 +83,11 @@ export class ContextMenu extends Menu {
 
   add() {
     console.log('Добавляем модуль');
+  }
+
+  #reset() {
+    this.#body = document.querySelector('body');
+    this.#body.innerHTML = '<ul class="menu" id="menu"></ul>';
+    this.#menu = this.#body.querySelector('.menu');
   }
 }
