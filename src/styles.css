@@ -5,38 +5,42 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/*Iryna - changes dafualt body background */
 body {
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   width: 100%;
   padding: 2rem;
+  background-color: #9c9a9a;
 }
-
+/* made change in '.menu' for box-shadow, opacity, border-radius, width, text-align */
 .menu {
   position: fixed;
   z-index: 1000;
-  width: 150px;
+  width: 210px;
   background: #1b1a1a;
-  border-radius: 5px;
+  border-radius: 8px;
   display: none;
   list-style: none;
+  text-align: center;
+  box-shadow: 2px 2px 5px 1px #1a1515;
+  opacity: 0.6;
 }
 
 .menu.open {
   display: block;
 }
-
+/* Iryna - made changes '.menu-item' for padding, color */
 .menu .menu-item {
-  padding: 8px 10px;
+  padding: 8px 4px 8px 4px;
   font-size: 1rem;
-  color: #eee;
+  color: #d5d2d2;
   cursor: pointer;
-  transition: background-color 0.2s ease-in;
+  transition: background-color .2s ease-in;
   border-radius: inherit;
 }
-
+/* Iryna - made changes in hover for color, font-size */
 .menu .menu-item:hover {
   background: #343434;
 }
