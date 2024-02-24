@@ -20,4 +20,4 @@ export const backgroundModule = new BackgroundModule(
   'body'
 );
 
-export const message = new Message('сообщение', 'Кастомное сообщение');
+export const message = new Message('сообщение', 'Кастомное сообщение', 50);
