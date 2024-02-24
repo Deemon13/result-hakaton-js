@@ -1,9 +1,6 @@
 import { Module } from '../core/module';
-import { Module } from '../core/module';
 import { random } from '../utils';
 import { getRandomColor } from '../utils';
-
-export class ShapeModule extends Module {}
 
 export class ShapeModule extends Module {
   #numbers;
