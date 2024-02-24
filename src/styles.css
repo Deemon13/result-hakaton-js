@@ -71,7 +71,6 @@ body {
 }
 
 .form__input {
-  /* display: block; */
   width: 250px;
   padding: 5px;
 
@@ -106,4 +105,24 @@ body {
 
   color: #00ff00;
   background-color: #707070;
+}
+
+.timer__container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 150px;
+  margin: auto;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #00ff00;
+  border-radius: 20px;
+
+  font-size: 36px;
+
+  color: #00ff00;
+  background-color: #343434;
 }

@@ -2,7 +2,7 @@ import { Menu } from './core/menu';
 
 import * as Modules from './modules/modules';
 
-console.log(Modules);
+// console.log(Modules);
 // console.log(Object.keys(Modules));
 
 // const backgroundModule = new BackgroundModule('back', 'Случайный фон');
