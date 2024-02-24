@@ -23,6 +23,7 @@ export const timer = new Timer('timer', 'Таймер отсчета');
 /*
  здесь вставить export для экземпляра класса Случайный звук
 */
+export const sound = new RandomSound ('звук', 'Случайный звук');
 
 export const backgroundModule = new BackgroundModule(
   'back',
