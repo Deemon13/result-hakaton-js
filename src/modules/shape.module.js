@@ -61,7 +61,7 @@ export class ShapeModule extends Module {
   trigger() {
     if (this.#shapeHTML) {
       this.#shapeHTML.removeAttribute('style');
-      this.#shapeHTML.remove(this.#body);
+      this.#shapeHTML.remove();
     }
     this.drawRandomShape();
   }
