@@ -47,6 +47,7 @@ export class Timer extends Module {
     if (document.querySelector('#timer')) {
       document.querySelector('#timer').remove();
     }
+    this.started = false;
     this.#createForm();
   }
 
