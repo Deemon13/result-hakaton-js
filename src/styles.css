@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-/*Iryna - changes dafualt body background */
+
 body {
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
@@ -14,7 +14,7 @@ body {
   padding: 2rem;
   background-color: #9c9a9a;
 }
-/* made change in '.menu' for box-shadow, opacity, border-radius, width, text-align */
+
 .menu {
   position: fixed;
   z-index: 1000;
@@ -31,25 +31,24 @@ body {
 .menu.open {
   display: block;
 }
-/* Iryna - made changes '.menu-item' for padding, color */
+
 .menu .menu-item {
   padding: 8px 4px 8px 4px;
   font-size: 1rem;
   color: #d5d2d2;
   cursor: pointer;
-  transition: background-color .2s ease-in;
-  /*border-radius: inherit;*/
+  transition: background-color 0.2s ease-in;
+
   border-bottom: 0.5px solid rgb(82, 54, 54);
 }
-/* Iryna - made changes in hover for color, font-size */
+
 .menu .menu-item:hover {
   background: #343434;
 }
-/*Iryna - added last-child to remove border-bottom  */
+
 .menu-item:last-child {
   border-bottom: none;
 }
-/* timer */
 
 .create-timer {
   max-width: 280px;
@@ -60,11 +59,9 @@ body {
   justify-content: center;
   align-items: center;
 
-/*   border: 2px solid #00ff00; */
   border: 2px solid #9bef9b;
   border-radius: 20px;
 
-/*   color: #00ff00; */
   color: #9bef9b;
   background-color: #343434;
   opacity: 0.8;
@@ -86,18 +83,15 @@ body {
   padding: 5px;
 
   border: none;
-/*   border-bottom: 1px solid #00ff00; */
   border-bottom: 1px solid #5bfa5b;
   outline: none;
 
-/*   color: #007000; */
   color: #2d752d;
   background-color: transparent;
 }
 
 .form__input:focus {
-/*   color: #00ff00; */
-   color: #25cb25;
+  color: #25cb25;
 }
 
 .btn {
@@ -111,7 +105,6 @@ body {
   text-transform: uppercase;
   font-weight: 600;
 
-/*   color: #007000; */
   color: #007000;
 }
 
@@ -127,45 +120,36 @@ body {
   top: 0;
   right: 0;
   width: 300px;
-/*   max-width: 150px; */
   margin: auto;
   padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-/*   border: 2px solid #00ff00; */
   border: 2px solid #9bef9b;
   border-radius: 20px;
 
   font-size: 36px;
 
-/*   color: #00ff00;
-  background-color: #343434; */
   color: #9bef9b;
   background-color: #343434;
 }
-
-/* message module */
 
 .message__container {
   position: absolute;
   top: 0;
   left: 0;
   padding: 15px;
-/* Iryna - added */
   margin-top: 20px;
   margin-left: 20px;
   width: 350px;
   height: auto;
 
-/*   border: 2px solid #00ff00; */
   border: 2px solid #83c783;
   border-radius: 20px;
 
   font-size: 40px;
 
-/*   color: #00ff00; */
   color: #639063;
   background-color: #343434;
 
