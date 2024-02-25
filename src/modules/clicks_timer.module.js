@@ -1,7 +1,14 @@
 import { Module } from '../core/module';
 
 export class ClicksTimerModule extends Module {
-  constructor(type, text, counterSingleClicks = 0, counterDoubleCLicks = 0) {
+  #time;
+  constructor(
+    type,
+    text,
+    counterSingleClicks = 0,
+    counterDoubleCLicks = 0,
+    time = 6000
+  ) {
     super(type, text);
     this.body = document.querySelector('body');
     this.body.addEventListener('click', this.handleOneClick.bind(this));
@@ -11,8 +18,17 @@ export class ClicksTimerModule extends Module {
     });
     this.counterSingleClicks = counterSingleClicks;
     this.counterDoubleCLicks = counterDoubleCLicks;
-    this.time = null;
+    this.#time = time;
     this.countDownId = null;
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  get time() {
+    return this.#time;
+  }
+
+  set time(newTime) {
+    this.#time = newTime;
   }
 
   handleOneClick() {
@@ -25,7 +41,6 @@ export class ClicksTimerModule extends Module {
 
   trigger() {
     this.enterTheTime();
-    this.timeForClick();
   }
 
   timeForClick() {
@@ -49,12 +64,50 @@ export class ClicksTimerModule extends Module {
     form.setAttribute('name', 'create-timer');
     form.setAttribute('id', 'create-timer');
     form.className = 'form create-timer';
-    /* версия через промпт*/
-    this.time = Number(prompt('Введите время в секундах...')) * 1000;
+
+    const secondsContainer = document.createElement('div');
+    secondsContainer.setAttribute('role', 'group');
+    secondsContainer.setAttribute('aria-labelledby', 'input-seconds');
+    secondsContainer.className = 'form__group';
+
+    const secondsLabel = document.createElement('label');
+    secondsLabel.setAttribute('for', 'seconds');
+    secondsLabel.className = 'form__label';
+    secondsLabel.innerText = 'Задать секунды:';
+
+    const secondsInput = document.createElement('input');
+    secondsInput.setAttribute('id', 'seconds');
+    secondsInput.setAttribute('type', 'number');
+    secondsInput.setAttribute('name', 'seconds');
+    secondsInput.setAttribute('min', '0');
+    secondsInput.setAttribute('max', '59');
+    secondsInput.setAttribute('value', `${this.time / 1000}`);
+    secondsInput.className = 'form__input';
+
+    const btnSubmit = document.createElement('button');
+    btnSubmit.setAttribute('type', 'submit');
+    btnSubmit.className = 'btn form__submit';
+    btnSubmit.innerText = 'Запустить Таймер';
+    btnSubmit.addEventListener('click', this.handleSubmit);
+
+    secondsContainer.append(secondsLabel, secondsInput);
+
+    form.append(secondsContainer, btnSubmit);
+
+    this.body.append(form);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.time = Number(event.target.form.elements.seconds.value) * 1000;
     this.createTimer(this.time);
+    this.startTimer();
+    this.timeForClick();
   }
 
   createTimer(seconds) {
+    document.querySelector('#create-timer').remove();
+
     const timerWrapper = document.createElement('div');
     timerWrapper.className = 'timer__wrapper';
     timerWrapper.innerText = 'Время кликать!';
@@ -68,7 +121,6 @@ export class ClicksTimerModule extends Module {
 
     timerWrapper.append(timer);
     this.body.append(timerWrapper);
-    this.startTimer();
   }
 
   startTimer() {
@@ -94,9 +146,6 @@ export class ClicksTimerModule extends Module {
       if (remain <= 0) {
         clearInterval(this.countDownId);
         document.querySelector('.timer__wrapper').innerHTML = 'Время вышло!';
-        // setTimeout(() => {
-        //   document.querySelector('.timer__wrapper').remove();
-        // }, 1000);
       }
     }, 1000);
   }
