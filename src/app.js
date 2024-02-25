@@ -4,5 +4,4 @@ import { ContextMenu } from './menu';
 
 const menu = new ContextMenu();
 
-menu.open();
 menu.close();

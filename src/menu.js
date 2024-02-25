@@ -8,50 +8,56 @@ export class ContextMenu extends Menu {
   constructor() {
     super();
     this.#body = document.querySelector('body');
+    this.#body.addEventListener('contextmenu', event => {
+      event.preventDefault();
+      const menuLeft = event.clientX;
+      const menuTop = event.clientY;
+      this.open(menuLeft, menuTop);
+    });
+    this.#body.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') {
+        return;
+      }
+      this.#eraseMenu();
+    });
     this.#menu = this.#body.querySelector('.menu');
     this.modulesList = Object.keys(Modules) || [];
   }
 
-  open() {
-    this.#body.addEventListener('contextmenu', event => {
-      this.#reset();
+  open(pointerLeft, pointerTop) {
+    this.#reset();
 
-      event.preventDefault();
+    if (!this.modulesList.length) {
+      return;
+    }
 
-      if (!this.modulesList.length) {
-        return;
-      }
+    if (this.#menu) {
+      this.#menu.innerHTML = '';
+    }
 
-      if (this.#menu) {
-        this.#menu.innerHTML = '';
-      }
-
-      this.#menu.classList.add('open');
-      this.modulesList.forEach(item => {
-        this.#menu.insertAdjacentHTML('beforeend', Modules[item].toHTML());
-      });
-
-      const lastItem = document.createElement('li');
-      lastItem.className = 'menu-item';
-      lastItem.innerText = 'Добавить модуль';
-      this.#menu.append(lastItem);
-
-      const menuLeft = event.clientX;
-      const menuTop = event.clientY;
-      const menuWidth = this.#menu.clientWidth;
-      const menuHeight = this.#menu.clientHeight;
-      const docWidth = document.defaultView.innerWidth;
-      const docHeight = document.defaultView.innerHeight;
-
-      this.#menu.style.left =
-        menuLeft + menuWidth >= docWidth
-          ? `${docWidth - menuWidth}px`
-          : `${menuLeft}px`;
-      this.#menu.style.top =
-        menuTop + menuHeight >= docHeight
-          ? `${docHeight - menuHeight}px`
-          : `${menuTop}px`;
+    this.#menu.classList.add('open');
+    this.modulesList.forEach(item => {
+      this.#menu.insertAdjacentHTML('beforeend', Modules[item].toHTML());
     });
+
+    const lastItem = document.createElement('li');
+    lastItem.className = 'menu-item';
+    lastItem.innerText = 'Добавить модуль';
+    this.#menu.append(lastItem);
+
+    const menuWidth = this.#menu.clientWidth;
+    const menuHeight = this.#menu.clientHeight;
+    const docWidth = document.defaultView.innerWidth;
+    const docHeight = document.defaultView.innerHeight;
+
+    this.#menu.style.left =
+      pointerLeft + menuWidth >= docWidth
+        ? `${docWidth - menuWidth}px`
+        : `${pointerLeft}px`;
+    this.#menu.style.top =
+      pointerTop + menuHeight >= docHeight
+        ? `${docHeight - menuHeight}px`
+        : `${pointerTop}px`;
   }
 
   close() {
@@ -75,19 +81,8 @@ export class ContextMenu extends Menu {
           this.add();
         }
       } else {
-        this.#menu.innerHTML = '';
-        this.#menu.classList.remove('open');
-        this.#menu.removeAttribute('style');
+        this.#eraseMenu();
       }
-    });
-
-    this.#body.addEventListener('keydown', event => {
-      if (event.key !== 'Escape') {
-        return;
-      }
-      this.#menu.innerHTML = '';
-      this.#menu.classList.remove('open');
-      this.#menu.removeAttribute('style');
     });
   }
 
@@ -99,5 +94,11 @@ export class ContextMenu extends Menu {
     this.#body = document.querySelector('body');
     this.#body.innerHTML = '<ul class="menu" id="menu"></ul>';
     this.#menu = this.#body.querySelector('.menu');
+  }
+
+  #eraseMenu() {
+    this.#menu.innerHTML = '';
+    this.#menu.classList.remove('open');
+    this.#menu.removeAttribute('style');
   }
 }
