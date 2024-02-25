@@ -172,6 +172,51 @@ body {
   font-size: 40px;
 }
 
+
+.click__container {
+  position: absolute;
+  margin: -25px 0 0 -50px;
+  left: 50%;
+  top: 50%;
+}
+
+.click__button {
+  height: 100px;
+  width: 200px;
+  padding: 16px 32px 16px 32px;
+  font-size: 24px;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  background-color: #383838;
+}
+
+.click__button:hover {
+  background-color: #4f4e4e;
+  transition: 0.35s;
+}
+
+.click__button:active {
+  background-color: #262525;
+  transition: 0.35s;
+}
+
+.click__single-counter {
+  margin-top: 8px;
+  width: 200px;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.click__double-counter {
+  margin-top: 8px;
+  width: 200px;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
 .timer__wrapper {
   position: absolute;
   top: 0;
@@ -214,3 +259,4 @@ body {
   color: #9bef9b;
   background-color: #343434;
 }
+
