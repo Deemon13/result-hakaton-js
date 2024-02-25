@@ -15,32 +15,42 @@ export class ContextMenu extends Menu {
   open() {
     this.#body.addEventListener('contextmenu', event => {
       this.#reset();
-      // отменяем действие по умолчанию - вызов встроенного контекстного меню
+
       event.preventDefault();
-      // если модулей нет, меню не вызывается
+
       if (!this.modulesList.length) {
         return;
       }
-      // если меню уже вызвано - перезатираем содержимое
+
       if (this.#menu) {
         this.#menu.innerHTML = '';
       }
-      // создание списка пунктов
+
       this.#menu.classList.add('open');
       this.modulesList.forEach(item => {
         this.#menu.insertAdjacentHTML('beforeend', Modules[item].toHTML());
       });
-      // создаем последний пункт меню для добавления модуля
+
       const lastItem = document.createElement('li');
       lastItem.className = 'menu-item';
       lastItem.innerText = 'Добавить модуль';
       this.#menu.append(lastItem);
-      // получаем координаты щелчка мыши
+
       const menuLeft = event.clientX;
       const menuTop = event.clientY;
-      // передвигаем меню к координатам щелчка мыши
-      this.#menu.style.left = `${menuLeft}px`;
-      this.#menu.style.top = `${menuTop}px`;
+      const menuWidth = this.#menu.clientWidth;
+      const menuHeight = this.#menu.clientHeight;
+      const docWidth = document.defaultView.innerWidth;
+      const docHeight = document.defaultView.innerHeight;
+
+      this.#menu.style.left =
+        menuLeft + menuWidth >= docWidth
+          ? `${docWidth - menuWidth}px`
+          : `${menuLeft}px`;
+      this.#menu.style.top =
+        menuTop + menuHeight >= docHeight
+          ? `${docHeight - menuHeight}px`
+          : `${menuTop}px`;
     });
   }
 
