@@ -171,3 +171,46 @@ body {
   margin: 0;
   font-size: 40px;
 }
+
+.timer__wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 300px;
+  margin: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #9bef9b;
+  border-radius: 20px;
+
+  font-size: 36px;
+
+  color: #9bef9b;
+  background-color: #343434;
+}
+
+.result__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  margin: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #9bef9b;
+  border-radius: 20px;
+
+  font-size: 16px;
+  text-align: left;
+
+  color: #9bef9b;
+  background-color: #343434;
+}

@@ -44,6 +44,12 @@ export class ClicksTimerModule extends Module {
   }
 
   enterTheTime() {
+    const form = document.createElement('form');
+    form.setAttribute('autocomplete', 'off');
+    form.setAttribute('name', 'create-timer');
+    form.setAttribute('id', 'create-timer');
+    form.className = 'form create-timer';
+    /* версия через промпт*/
     this.time = Number(prompt('Введите время в секундах...')) * 1000;
     this.createTimer(this.time);
   }
@@ -51,6 +57,7 @@ export class ClicksTimerModule extends Module {
   createTimer(seconds) {
     const timerWrapper = document.createElement('div');
     timerWrapper.className = 'timer__wrapper';
+    timerWrapper.innerText = 'Время кликать!';
     const timer = document.createElement('span');
     timer.className = 'timer';
 
@@ -86,7 +93,7 @@ export class ClicksTimerModule extends Module {
 
       if (remain <= 0) {
         clearInterval(this.countDownId);
-        document.querySelector('.timer').innerHTML = 'Время вышло!';
+        document.querySelector('.timer__wrapper').innerHTML = 'Время вышло!';
         // setTimeout(() => {
         //   document.querySelector('.timer__wrapper').remove();
         // }, 1000);
@@ -96,6 +103,7 @@ export class ClicksTimerModule extends Module {
 
   renderResult(clicks, doubleClicks) {
     const resultWrapper = document.createElement('div');
+    resultWrapper.className = 'result__wrapper';
     const clicksSpan = document.createElement('span');
     const dblClicksSpan = document.createElement('span');
     clicksSpan.innerText = `Число одиночных кликов: ${clicks}`;
