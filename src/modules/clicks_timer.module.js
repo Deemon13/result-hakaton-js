@@ -13,9 +13,6 @@ export class ClicksTimerModule extends Module {
     this.body = document.querySelector('body');
     this.body.addEventListener('click', this.handleOneClick.bind(this));
     this.body.addEventListener('dblclick', this.handleDblClick.bind(this));
-    this.body.addEventListener('mousedown', event => {
-      event.preventDefault();
-    });
     this.counterSingleClicks = counterSingleClicks;
     this.counterDoubleCLicks = counterDoubleCLicks;
     this.#time = time;
@@ -50,7 +47,6 @@ export class ClicksTimerModule extends Module {
     const timerID = setTimeout(() => {
       this.body.removeEventListener('click', this.handleOneClick);
       this.body.removeEventListener('dblclick', this.handleDblClick);
-
       this.renderResult(this.counterSingleClicks, this.counterDoubleCLicks);
     }, time);
     if (time <= 0) {
