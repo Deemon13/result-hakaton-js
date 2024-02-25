@@ -6,7 +6,7 @@ export class Timer extends Module {
   #minutes;
   #seconds;
 
-  constructor(type, text, hours = 1, minutes = 0, seconds = 0) {
+  constructor(type, text, hours = 0, minutes = 0, seconds = 15) {
     super(type, text);
     this.#body = document.querySelector('body');
     this.#hours = hours;
@@ -14,6 +14,7 @@ export class Timer extends Module {
     this.#seconds = seconds;
     this.handleSubmit = this.#handleSubmit.bind(this);
     this.started = false;
+    this.countDownId = null;
   }
 
   get hours() {
@@ -194,6 +195,7 @@ export class Timer extends Module {
       this.seconds * 1000;
 
     const countDown = setInterval(function () {
+      this.countDownId = countDown;
       const now = new Date().getTime();
       const remain = stopDateInMS - now;
       let hours = Math.floor((remain / 1000 / 60 / 60) % 24);
@@ -204,12 +206,20 @@ export class Timer extends Module {
       minutes = minutes < 10 ? '0' + minutes : minutes;
       seconds = seconds < 10 ? '0' + seconds : seconds;
 
-      document.querySelector('.timer__hours').innerHTML = hours;
-      document.querySelector('.timer__minutes').innerHTML = minutes;
-      document.querySelector('.timer__seconds').innerHTML = seconds;
+      if (
+        document.querySelector('.timer__hours') &&
+        document.querySelector('.timer__minutes') &&
+        document.querySelector('.timer__seconds')
+      ) {
+        document.querySelector('.timer__hours').innerHTML = hours;
+        document.querySelector('.timer__minutes').innerHTML = minutes;
+        document.querySelector('.timer__seconds').innerHTML = seconds;
+      } else {
+        clearInterval(this.countDownId);
+      }
 
       if (remain <= 0) {
-        clearInterval(countDown);
+        clearInterval(this.countDownId);
         document.querySelector('.timer__container').innerHTML = 'Время вышло!';
         setTimeout(() => {
           document.querySelector('#timer').remove();
