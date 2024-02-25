@@ -10,6 +10,52 @@ export class ClicksModule extends Module {
     this.counterDoubleCLicks = counterDoubleCLicks;
   }
 
+  clickTimer() {
+    const clickContainer = document.createElement('div');
+    clickContainer.className = 'click__container';
+
+    const buttonToStart = document.createElement('button');
+    buttonToStart.className = 'click__button';
+    buttonToStart.textContent = 'Tap to start';
+
+    const counterSingleHTML = document.createElement('div');
+    counterSingleHTML.className = 'click__single-counter';
+    const counterDoubleHTML = document.createElement('div');
+    counterDoubleHTML.className = 'click__double-counter';
+
+    this.counterSingleClicks = 0;
+    this.counterDoubleCLicks = 0;
+
+    clickContainer.append(buttonToStart);
+    this.body.append(clickContainer);
+
+    buttonToStart.addEventListener('click', (event) => {
+      const {target} = event;
+
+      if(target) {
+        counterSingleHTML.removeAttribute('style');
+        counterDoubleHTML.removeAttribute('style');
+        counterSingleHTML.remove();
+        counterDoubleHTML.remove();
+      }
+
+      this.counterSingleClicks = 0;
+      this.counterDoubleCLicks = 0;
+      let time = 5000;
+      const timerID = setTimeout(() => {
+        this.body.removeEventListener('click', this.handleOneClick);
+
+        counterSingleHTML.textContent = `Single Clicks: ${this.counterSingleClicks -1}`;
+        counterDoubleHTML.textContent = `Double Clicks: ${this.counterDoubleCLicks}`;
+
+        clickContainer.append(counterSingleHTML, counterDoubleHTML);
+      }, time);
+      if (time <= 0) {
+        clearTimeout(timerID);
+      }
+    })
+  }
+
   handleOneClick() {
     this.counterSingleClicks += 1;
   }
@@ -19,21 +65,6 @@ export class ClicksModule extends Module {
   }
 
   trigger() {
-    this.timeForClick();
-  }
-
-  timeForClick() {
-    let time = 5000;
-    const timerID = setTimeout(() => {
-      this.body.removeEventListener('click', this.handleOneClick);
-      this.body.removeEventListener('dblclick', this.handleDblClick);
-
-      console.log('Время вышло!');
-      console.log('Одиночные клики', this.counterSingleClicks);
-      console.log('Двойные клики', this.counterDoubleCLicks);
-    }, time);
-    if (time <= 0) {
-      clearTimeout(timerID);
-    }
+    this.clickTimer();
   }
 }
